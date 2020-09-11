@@ -5,12 +5,29 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject Enemy;
+    [SerializeField] private float secondsToSpawn = default;
+    private float timer;
+
     private void Start()
     {
 
     }
     void Update()
     {
-        Instantiate(Enemy);
+        WaintUntilSpawn();
     }
+
+    private void WaintUntilSpawn()
+    {
+        if (timer <= secondsToSpawn)
+        {
+            timer += Time.deltaTime;
+        }
+        else
+        {
+            timer = 0;
+            Instantiate(Enemy);
+        }
+    }
+
 }

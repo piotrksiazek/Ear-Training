@@ -14,7 +14,6 @@ public class MoveEnemy : MonoBehaviour
     }
     void Update()
     {
-        print(startPostion);
         transform.Translate(Vector3.down * Time.deltaTime * moveSpeed);
     }
 }
