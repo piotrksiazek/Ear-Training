@@ -9,6 +9,9 @@ public class CommonData : MonoBehaviour
     public float MaxPos;
     public GameObject Player;
     public float PlayerPositionX;
+    public float PlayerMovePointX;
+    public float PlayerBaseYPosition;
+
     private void Awake()
     {
         if (Instance == null)
@@ -20,10 +23,12 @@ public class CommonData : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        PlayerBaseYPosition = Player.transform.position.y;
     }
 
     private void Update()
     {
         PlayerPositionX = Player.transform.position.x;
+        PlayerMovePointX = Player.transform.position.x;
     }
 }

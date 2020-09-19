@@ -14,7 +14,7 @@ public class PlayAudio : MonoBehaviour
 
     void Update()
     {
-        if(CommonData.Instance.PlayerPositionX == transform.position.x)
+        if (CommonData.Instance.PlayerMovePointX == transform.position.x)
         {
             print($"Jestem pod przeciwnikiem {transform.tag}");
         }
@@ -26,7 +26,6 @@ public class PlayAudio : MonoBehaviour
         {
             audioSource.PlayOneShot(audioClip);
         }
-            
     }
 
     private void OnTriggerExit2D(Collider2D collision)

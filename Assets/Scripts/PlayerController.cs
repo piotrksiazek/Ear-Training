@@ -32,6 +32,10 @@ public class PlayerController : MonoBehaviour
                 MovePoint.transform.position -= new Vector3(unitsPerStep, 0f);
             }  
         }
+        else if (Input.GetKeyDown(KeyCode.S))
+        {
+            MovePoint.transform.position -= new Vector3(0f, 1f);
+        }
 
         transform.position = Vector2.MoveTowards(transform.position, MovePoint.position, Time.deltaTime * moveSpeed) ;
 
