@@ -6,6 +6,7 @@ public class PlayAudio : MonoBehaviour
 {
     AudioSource audioSource;
     AudioClip audioClip;
+    RaycastHit2D hit;
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -14,22 +15,26 @@ public class PlayAudio : MonoBehaviour
 
     void Update()
     {
-        if (CommonData.Instance.PlayerMovePointX == transform.position.x)
-        {
-            print($"Jestem pod przeciwnikiem {transform.tag}");
-        }
+        PlayAudioIfPlayerBelow();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void PlayAudioIfPlayerBelow()
     {
-        if(collision.tag == "Player")
-        {
-            audioSource.PlayOneShot(audioClip);
-        }
-    }
+        // Cast a ray straight down.
+        hit = Physics2D.Raycast(transform.position, Vector2.down);
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        audioSource.Stop();
+        // If it hits an enemy below
+        if (hit.collider != null)
+        {
+            if(hit.transform.tag == "Player")
+            {
+                print("Player Below");
+                audioSource.PlayOneShot(audioClip);
+            }
+        }
+        else
+        {
+            audioSource.Stop();
+        }
     }
 }

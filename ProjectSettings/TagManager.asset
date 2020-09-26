@@ -17,6 +17,9 @@ TagManager:
   - MinorSeventh
   - MajorSeventh
   - PerfectOctave
+  - Enemy
+  - LeftCollider
+  - RightCollider
   layers:
   - Default
   - TransparentFX

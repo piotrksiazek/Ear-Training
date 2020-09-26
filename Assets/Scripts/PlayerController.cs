@@ -7,8 +7,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed = default;
     public Transform MovePoint;
     [SerializeField] private float unitsPerStep = default;
+    [SerializeField] private float unitsToDissapearBottom = default; //Used when player leaves screen down
+    [SerializeField] private float unitsToDissapearSides = default; //Used when player leaves screen sides
     public float MinPos;
     public float MaxPos;
+    public DetectEnemyAbove DetectEnemyAbove;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,24 +21,49 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.D))
+        if (transform.position.y == CommonData.Instance.PlayerBaseYPosition && transform.position.x == MovePoint.position.x && transform.position.y == MovePoint.position.y)
         {
-            if(MovePoint.transform.position.x < MaxPos)
+            if (Input.GetKeyDown(KeyCode.D))
             {
-                MovePoint.transform.position += new Vector3(unitsPerStep, 0f);
-            }  
-        }
-        else if (Input.GetKeyDown(KeyCode.A))
-        {
-            if (MovePoint.transform.position.x > MinPos)
+                if (MovePoint.transform.position.x < MaxPos)
+                {
+                    MovePoint.transform.position += new Vector3(unitsPerStep, 0f);
+                }
+
+                else if (MovePoint.transform.position.x == MaxPos)//Leaving screen to the right
+                {
+                    MovePoint.transform.position += new Vector3(unitsPerStep, 0f);
+                    CommonData.Instance.isTeleportingSideways = true;
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.A))
             {
-                MovePoint.transform.position -= new Vector3(unitsPerStep, 0f);
-            }  
+                if (MovePoint.transform.position.x > MinPos)
+                {
+                    MovePoint.transform.position -= new Vector3(unitsPerStep, 0f);
+                }
+                else if (MovePoint.transform.position.x == MinPos)//Leaving screen to the left
+                {
+                    MovePoint.transform.position -= new Vector3(unitsPerStep, 0f);
+                    CommonData.Instance.isTeleportingSideways = true;
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.S))
+            {
+                MovePoint.transform.position -= new Vector3(0f, unitsToDissapearBottom);
+            }
+
+            else if (Input.GetKeyDown(KeyCode.W))
+            {
+
+                if (DetectEnemyAbove.EnemyPosition() != null)
+                {
+                    MovePoint.transform.position = DetectEnemyAbove.EnemyPosition().position;
+                }
+
+            }
         }
-        else if (Input.GetKeyDown(KeyCode.S))
-        {
-            MovePoint.transform.position -= new Vector3(0f, 1f);
-        }
+        
 
         transform.position = Vector2.MoveTowards(transform.position, MovePoint.position, Time.deltaTime * moveSpeed) ;
 

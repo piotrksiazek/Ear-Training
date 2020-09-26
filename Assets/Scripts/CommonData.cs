@@ -11,6 +11,7 @@ public class CommonData : MonoBehaviour
     public float PlayerPositionX;
     public float PlayerMovePointX;
     public float PlayerBaseYPosition;
+    public bool isTeleportingSideways = false; //true if player leaves screen from side. Activates and deactivates left and right wall collider.
 
     private void Awake()
     {
