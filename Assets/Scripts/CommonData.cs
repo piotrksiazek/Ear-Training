@@ -12,6 +12,9 @@ public class CommonData : MonoBehaviour
     public float PlayerMovePointX;
     public float PlayerBaseYPosition;
     public bool isTeleportingSideways = false; //true if player leaves screen from side. Activates and deactivates left and right wall collider.
+    public Dictionary<int, GameObject> ReferenceEnemiesDict = new Dictionary<int, GameObject>();
+    public int CurrentEnemyIndex = 0;
+
 
     private void Awake()
     {
@@ -31,5 +34,7 @@ public class CommonData : MonoBehaviour
     {
         PlayerPositionX = Player.transform.position.x;
         PlayerMovePointX = Player.transform.position.x;
+        //print(ReferenceEnemiesDict.Count);
+        //print($"Index is {CurrentEnemyIndex}");
     }
 }

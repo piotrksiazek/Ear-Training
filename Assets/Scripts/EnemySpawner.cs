@@ -5,12 +5,13 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject Enemy;
+    public GameObject enemyReference;
     [SerializeField] private float secondsToSpawn = default;
     private float timer;
+    
 
     private void Start()
     {
-
     }
     void Update()
     {
@@ -26,7 +27,8 @@ public class EnemySpawner : MonoBehaviour
         else
         {
             timer = 0;
-            Instantiate(Enemy);
+            enemyReference = (GameObject)Instantiate(Enemy);
+            CommonData.Instance.ReferenceEnemiesDict.Add(CommonData.Instance.CurrentEnemyIndex++, enemyReference);
         }
     }
 

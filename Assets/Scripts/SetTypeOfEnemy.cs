@@ -19,12 +19,14 @@ public class SetTypeOfEnemy : MonoBehaviour
     public AudioClip PerfectOctave;
     public List<AudioClip> IntervalsList;
     private AudioSource audioSource;
+    public int EnemyIndex;
 
     void Start()
     {
         IntervalsList = GetIntervals();
         audioSource = GetComponent<AudioSource>();
         DetermineTypeOfEnemy(audioSource);
+        EnemyIndex = CommonData.Instance.CurrentEnemyIndex;
     }
 
     // Update is called once per frame

@@ -21,7 +21,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.y == CommonData.Instance.PlayerBaseYPosition && transform.position.x == MovePoint.position.x && transform.position.y == MovePoint.position.y)
+        if (transform.position.y == CommonData.Instance.PlayerBaseYPosition
+            //&& Mathf.Abs(transform.position.x - MovePoint.position.x) >= 0.2 * Mathf.Abs(transform.position.x - MovePoint.position.x)
+            && transform.position.y == MovePoint.position.y)
         {
             if (Input.GetKeyDown(KeyCode.D))
             {
