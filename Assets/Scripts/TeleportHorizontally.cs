@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerLeaveSides : MonoBehaviour
+public class TeleportHorizontally : MonoBehaviour
 {
     public GameObject PlayerMovePoint;
     public GameObject Player;

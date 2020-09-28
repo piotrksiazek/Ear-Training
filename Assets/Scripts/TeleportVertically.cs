@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMoveDown : MonoBehaviour
+public class TeleportVertically : MonoBehaviour
 {
     public GameObject Player;
     public GameObject PlayerMovePoint;
