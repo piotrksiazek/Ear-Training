@@ -21,6 +21,12 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (transform.position.y == CommonData.Instance.PlayerBaseYPosition)
+        {
+            CommonData.Instance.isAttackingFromAbove = false;
+            CommonData.Instance.isAttackingFromBelow = false;
+        }
+
         if (transform.position.y == CommonData.Instance.PlayerBaseYPosition
             //&& Mathf.Abs(transform.position.x - MovePoint.position.x) >= 0.2 * Mathf.Abs(transform.position.x - MovePoint.position.x)
             && transform.position.y == MovePoint.position.y)
@@ -52,6 +58,7 @@ public class PlayerController : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.S))
             {
+                CommonData.Instance.isAttackingFromAbove = true;
                 MovePoint.transform.position -= new Vector3(0f, unitsToDissapearBottom);
             }
 
@@ -60,15 +67,18 @@ public class PlayerController : MonoBehaviour
 
                 if (DetectEnemyAbove.EnemyPosition() != null)
                 {
+                    CommonData.Instance.isAttackingFromBelow = true;
                     MovePoint.transform.position = DetectEnemyAbove.EnemyPosition().position;
+
                 }
 
             }
         }
-        
+
 
         transform.position = Vector2.MoveTowards(transform.position, MovePoint.position, Time.deltaTime * moveSpeed) ;
 
 
     }
+
 }

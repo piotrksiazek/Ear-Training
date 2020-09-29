@@ -18,6 +18,11 @@ public class OnDestroyActions : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        if (collision.transform.tag == "BottomCollider")
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnDestroy()

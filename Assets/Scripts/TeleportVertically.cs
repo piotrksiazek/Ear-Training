@@ -21,7 +21,7 @@ public class TeleportVertically : MonoBehaviour
         {
             Player.transform.position += new Vector3(0f, cameraHeight + Mathf.Abs(CommonData.Instance.PlayerBaseYPosition));
             PlayerMovePoint.transform.position = new Vector3(CommonData.Instance.PlayerPositionX, CommonData.Instance.PlayerBaseYPosition);
-
         }
     }
+
 }
