@@ -33,6 +33,7 @@ public class SetTypeOfEnemy : MonoBehaviour
     void Start()
     {
         IntervalsList = GetIntervals();
+        IntervalsListString = GetIntervalsString();
         audioSource = GetComponent<AudioSource>();
         DetermineTypeOfEnemy(audioSource);
         EnemyIndex = CommonData.Instance.CurrentEnemyIndex;
@@ -44,6 +45,7 @@ public class SetTypeOfEnemy : MonoBehaviour
         
     }
 
+    // Used to initialise a list and assign it to a variable in Start() method
     private List<AudioClip> GetIntervals()
     {
         var intervalsList = new List<AudioClip>() { PerfectUnison,
@@ -61,7 +63,8 @@ public class SetTypeOfEnemy : MonoBehaviour
                                                     PerfectOctave};
         return intervalsList;
     }
-    
+
+    // Used to initialise a list and assign it to a variable in Start() method
     private List<string> GetIntervalsString()
     {
         var intervalsListString = new List<string>(){"PerfectUnison",
@@ -81,16 +84,32 @@ public class SetTypeOfEnemy : MonoBehaviour
         return intervalsListString;
     }
 
-
+    // Generates a random number corresponding with intervalsList length
     private int GetRandomIntervalIndex()
     {
-        int randomIndex = Random.Range(0, IntervalsList.Count + 1);
+        int randomIndex = Random.Range(0, IntervalsList.Count - 1);
         return randomIndex;
     }
 
+    // Generates intervalGuess index that has 1/2 chance for being the same as tag and audio clip
+    private void SetIntervalGuess(int randomIntervalIndex)
+    {
+        int chance = Random.Range(0, 1);
+        if(chance > 0.5)
+        {
+            intervalGuess = transform.tag;
+        }
+        else
+        {
+            intervalGuess = IntervalsListString[Random.Range(0, IntervalsListString.Count - 1)];
+        }
+    }
+
+    // Primary method of the class. Handles tag, audioclip and intevalGuess assignment
     private void DetermineTypeOfEnemy(AudioSource audioSource)
     {
-        switch (GetRandomIntervalIndex())
+        int randomIntervalIndex = GetRandomIntervalIndex();
+        switch (randomIntervalIndex)
         {
             case 0:
                 transform.tag = "PerfectUnison";
@@ -146,5 +165,6 @@ public class SetTypeOfEnemy : MonoBehaviour
                 break;
 
         }
+        SetIntervalGuess(randomIntervalIndex);
     }
 }
