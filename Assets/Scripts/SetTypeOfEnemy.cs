@@ -94,6 +94,7 @@ public class SetTypeOfEnemy : MonoBehaviour
     // Generates intervalGuess index that has 1/2 chance for being the same as tag and audio clip
     private void SetIntervalGuess(int randomIntervalIndex)
     {
+        List<string> intervalListStringCopy = new List<string>(); 
         int chance = Random.Range(0, 1);
         if(chance > 0.5)
         {
@@ -101,7 +102,8 @@ public class SetTypeOfEnemy : MonoBehaviour
         }
         else
         {
-            intervalGuess = IntervalsListString[Random.Range(0, IntervalsListString.Count - 1)];
+            intervalListStringCopy.Remove(transform.tag); // if chance is below 0.5 we want to have separate list without item chosen in DetermineTypeOfEnemy
+            intervalGuess = intervalListStringCopy[Random.Range(0, intervalListStringCopy.Count - 1)];
         }
     }
 
