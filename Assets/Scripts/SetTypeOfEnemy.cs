@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SetTypeOfEnemy : MonoBehaviour
-{
+{   // Intervals in audio clip
     public AudioClip PerfectUnison;
     public AudioClip MinorSecond;
     public AudioClip MajorSecond;
@@ -17,9 +17,18 @@ public class SetTypeOfEnemy : MonoBehaviour
     public AudioClip MinorSeventh;
     public AudioClip MajorSeventh;
     public AudioClip PerfectOctave;
+    
+    // Lists containing audio clips with intervals and interval names in string format
     public List<AudioClip> IntervalsList;
+    public List<string> IntervalsListString;
+
+
     private AudioSource audioSource;
+
     public int EnemyIndex;
+
+    // Text on enemy with interval name. It can match inteval played by enemy but can be a lie as well
+    public string intervalGuess;
 
     void Start()
     {
@@ -52,6 +61,26 @@ public class SetTypeOfEnemy : MonoBehaviour
                                                     PerfectOctave};
         return intervalsList;
     }
+    
+    private List<string> GetIntervalsString()
+    {
+        var intervalsListString = new List<string>(){"PerfectUnison",
+                                                     "MinorSecond",
+                                                     "MajorSecond",
+                                                     "MinorThird",
+                                                     "MajorThird",
+                                                     "PerfectFourth",
+                                                     "Tritone",
+                                                     "PerfectFifth",
+                                                     "MinorSixth",
+                                                     "MajorSixth",
+                                                     "MinorSeventh",
+                                                     "MajorSeventh",
+                                                     "PerfectOctave"};
+                                                                    
+        return intervalsListString;
+    }
+
 
     private int GetRandomIntervalIndex()
     {

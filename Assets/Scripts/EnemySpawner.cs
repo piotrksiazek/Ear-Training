@@ -27,8 +27,9 @@ public class EnemySpawner : MonoBehaviour
         else
         {
             timer = 0;
-            enemyReference = (GameObject)Instantiate(Enemy);
-            CommonData.Instance.ReferenceEnemiesDict.Add(CommonData.Instance.CurrentEnemyIndex++, enemyReference);
+            CommonData.Instance.ReferenceEnemiesDict.Add(CommonData.Instance.CurrentEnemyIndex++, Instantiate(Enemy));
+
+            CommonData.Instance.DictString.Add($"key: {CommonData.Instance.CurrentEnemyIndex - 1}"); //Delete
         }
     }
 

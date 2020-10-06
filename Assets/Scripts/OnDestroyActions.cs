@@ -28,6 +28,7 @@ public class OnDestroyActions : MonoBehaviour
     private void OnDestroy()
     {
         CommonData.Instance.ReferenceEnemiesDict.Remove(enemyIndex);
+        CommonData.Instance.DictString.RemoveAt(CommonData.Instance.DictString.Count - 1); //Delete
         print($"my index is {enemyIndex}");
 
     }

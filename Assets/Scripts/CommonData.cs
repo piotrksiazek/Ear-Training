@@ -13,6 +13,7 @@ public class CommonData : MonoBehaviour
     public float PlayerBaseYPosition;
     public bool isTeleportingSideways = false; //true if player leaves screen from side. Activates and deactivates left and right wall collider.
     public Dictionary<int, GameObject> ReferenceEnemiesDict = new Dictionary<int, GameObject>();
+    public List<string> DictString = new List<string>(); //Delete
     public int CurrentEnemyIndex = 0;
     public bool isAttackingFromBelow = false;
     public bool isAttackingFromAbove = false;
@@ -36,7 +37,5 @@ public class CommonData : MonoBehaviour
     {
         PlayerPositionX = Player.transform.position.x;
         PlayerMovePointX = Player.transform.position.x;
-        print(ReferenceEnemiesDict.Count);
-        //print($"Index is {CurrentEnemyIndex}");
     }
 }
