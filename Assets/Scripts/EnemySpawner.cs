@@ -12,10 +12,12 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine("WaitUntillSpawn");
     }
     void Update()
     {
-        WaintUntilSpawn();
+        //WaintUntilSpawn();
+        
     }
 
     private void WaintUntilSpawn()
@@ -28,9 +30,20 @@ public class EnemySpawner : MonoBehaviour
         {
             timer = 0;
             CommonData.Instance.ReferenceEnemiesDict.Add(CommonData.Instance.CurrentEnemyIndex++, Instantiate(Enemy));
-
             CommonData.Instance.DictString.Add($"key: {CommonData.Instance.CurrentEnemyIndex - 1}"); //Delete
+
         }
+    }
+
+    IEnumerator WaitUntillSpawn()
+    {
+        for(; ; )
+        {
+            CommonData.Instance.ReferenceEnemiesDict.Add(CommonData.Instance.CurrentEnemyIndex++, Instantiate(Enemy));
+            CommonData.Instance.DictString.Add($"key: {CommonData.Instance.CurrentEnemyIndex - 1}"); //Delete
+            yield return new WaitForSeconds(secondsToSpawn);
+        }
+        
     }
 
 }
