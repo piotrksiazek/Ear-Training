@@ -30,6 +30,7 @@ public class SetTypeOfEnemy : MonoBehaviour
     // Text on enemy with interval name. It can match inteval played by enemy but can be a lie as well
     public string intervalGuess;
 
+
     void Start()
     {
         IntervalsList = GetIntervals();
@@ -39,11 +40,6 @@ public class SetTypeOfEnemy : MonoBehaviour
         EnemyIndex = CommonData.Instance.CurrentEnemyIndex;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     // Used to initialise a list and assign it to a variable in Start() method
     private List<AudioClip> GetIntervals()

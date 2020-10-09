@@ -14,26 +14,6 @@ public class EnemySpawner : MonoBehaviour
     {
         StartCoroutine("WaitUntillSpawn");
     }
-    void Update()
-    {
-        //WaintUntilSpawn();
-        
-    }
-
-    private void WaintUntilSpawn()
-    {
-        if (timer <= secondsToSpawn)
-        {
-            timer += Time.deltaTime;
-        }
-        else
-        {
-            timer = 0;
-            CommonData.Instance.ReferenceEnemiesDict.Add(CommonData.Instance.CurrentEnemyIndex++, Instantiate(Enemy));
-            CommonData.Instance.DictString.Add($"key: {CommonData.Instance.CurrentEnemyIndex - 1}"); //Delete
-
-        }
-    }
 
     IEnumerator WaitUntillSpawn()
     {
