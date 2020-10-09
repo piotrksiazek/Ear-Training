@@ -27,7 +27,7 @@ public class ActivateEnemyDestructability : MonoBehaviour
         {   
             if(hit.transform.tag != "Player")
             {              
-                hit.transform.GetComponent<SpriteRenderer>().color = Color.red;
+                hit.transform.GetComponent<SpriteRenderer>().color = Color.red; // Replace with activate / deactivate method
             }
 
             else
