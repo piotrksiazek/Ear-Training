@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OnDestroyActions : MonoBehaviour
+public class ActivateDeactivateEnemy : MonoBehaviour
 {
     private SetTypeOfEnemy setTypeOfEnemy;
     private int enemyIndex;
+    public bool IsFirstInLine = false;
+
 
     private void Start()
     {
@@ -14,14 +16,13 @@ public class OnDestroyActions : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.tag == "Player")
+        if (collision.transform.tag == "Player" || collision.transform.tag == "BottomCollider")
         {
-            Destroy(gameObject);
-        }
-
-        if (collision.transform.tag == "BottomCollider")
-        {
-            Destroy(gameObject);
+            if(IsFirstInLine)
+            {
+                Destroy(gameObject);
+            }
+            
         }
     }
 
