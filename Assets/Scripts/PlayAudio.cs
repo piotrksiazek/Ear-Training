@@ -7,6 +7,10 @@ public class PlayAudio : MonoBehaviour
     AudioSource audioSource;
     AudioClip audioClip;
     private bool isPlayingAdio = false;
+    [SerializeField]
+    private float fadeInDuration = default;
+    [SerializeField]
+    private float fadeOutDuration = default;
 
     RaycastHit2D hit;
     private bool isFirstInLine;
@@ -17,6 +21,7 @@ public class PlayAudio : MonoBehaviour
         layerMask = 1 << 8;
         layerMask = ~layerMask;
         audioSource = GetComponent<AudioSource>();
+        audioSource.volume = 0;
         audioClip = audioSource.clip;
     }
 
@@ -25,7 +30,7 @@ public class PlayAudio : MonoBehaviour
         PlayAudioIfPlayerBelow();
     }
 
-    public void PlayAudioIfPlayerBelow()
+    private void PlayAudioIfPlayerBelow()
     {
         hit = Physics2D.Raycast(transform.position, Vector2.down, Mathf.Infinity, layerMask);
 
@@ -38,18 +43,45 @@ public class PlayAudio : MonoBehaviour
                 if(!isPlayingAdio)
                 {
                     audioSource.PlayOneShot(audioClip);
-                    isPlayingAdio = true;
-                }
+                    StartCoroutine("fadeIn");
                     
-
-                
+                }          
             }
 
             else
             {
-                isPlayingAdio = false;
-                audioSource.Stop();
+                if (audioSource.isPlaying)
+                    StartCoroutine("fadeOut");
             }
         }
     }
+
+    IEnumerator fadeIn()
+    {
+        isPlayingAdio = true;
+        while (audioSource.isPlaying)
+        {
+            if(audioSource.volume < 1)
+            {
+                audioSource.volume += Time.deltaTime / fadeInDuration;
+            }
+            yield return null;
+        }
+        audioSource.volume = 1;
+    }
+
+    IEnumerator fadeOut()
+    {
+        while (audioSource.volume > 0)
+        {   
+            audioSource.volume -= Time.deltaTime / fadeOutDuration;
+            
+            yield return null;
+            audioSource.Stop();
+        }
+        isPlayingAdio = false;
+        audioSource.volume = 0;
+    }
+
+
 }
