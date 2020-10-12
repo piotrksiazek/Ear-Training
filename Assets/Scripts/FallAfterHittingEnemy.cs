@@ -15,7 +15,5 @@ public class FallAfterHittingEnemy : MonoBehaviour
     private void fallDown()
     {
         PlayerMovePoint.transform.position = new Vector3(CommonData.Instance.PlayerPositionX, CommonData.Instance.PlayerBaseYPosition);
-        print("collision");
-
     }
 }

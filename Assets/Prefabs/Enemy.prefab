@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2211489961073651985}
   - component: {fileID: -3171958254072881388}
   - component: {fileID: 1318353110457192287}
+  - component: {fileID: 4334935041173458539}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Enemy
@@ -132,19 +133,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d3316c0544ba47408eddfe43947b82c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PerfectUnison: {fileID: 8300000, guid: 00b8a6a01ea12684e8bc25c954a97527, type: 3}
-  MinorSecond: {fileID: 8300000, guid: e90044b5f0398a04d98487cca9513d3c, type: 3}
-  MajorSecond: {fileID: 8300000, guid: 10645c728b0245c499d55db5ead2fa9e, type: 3}
-  MinorThird: {fileID: 8300000, guid: 1922fe8e057a65445b69107a2f0bb210, type: 3}
-  MajorThird: {fileID: 8300000, guid: 41468fd37f2f6d540a03c621cb877d4b, type: 3}
-  PerfectFourth: {fileID: 8300000, guid: aaea79f1b76d45e4f9791176a6c08dd9, type: 3}
-  Tritone: {fileID: 8300000, guid: 4de02750827e7cd4e99c23c8196e0904, type: 3}
-  PerfectFifth: {fileID: 8300000, guid: 70a2e97670c90cf4da9574079b5bc65e, type: 3}
-  MinorSixth: {fileID: 8300000, guid: dc44913ffe2b03b4395fbb4d3771f1ba, type: 3}
-  MajorSixth: {fileID: 8300000, guid: 6ea44cd24da38b647b9e9686eaed696e, type: 3}
-  MinorSeventh: {fileID: 8300000, guid: 45dc29703572d474096fb25ff3750154, type: 3}
-  MajorSeventh: {fileID: 8300000, guid: 4aee0ed45f5ae6746a675ace1e965a3b, type: 3}
-  PerfectOctave: {fileID: 8300000, guid: 5b301e1c27fa97b4198b777fc85b9b37, type: 3}
+  PerfectUnison: {fileID: 8300000, guid: 3b4a0d213be8f764b81822beda8893f4, type: 3}
+  MinorSecond: {fileID: 8300000, guid: 16f933106c39ef24cbd3a14243b50dad, type: 3}
+  MajorSecond: {fileID: 8300000, guid: 48654cc889d4dc249add2402433aff16, type: 3}
+  MinorThird: {fileID: 8300000, guid: 120e4c9e90a120e46b67412bd6c375f4, type: 3}
+  MajorThird: {fileID: 8300000, guid: f6eba9a520262e74aa786a645301b3ef, type: 3}
+  PerfectFourth: {fileID: 8300000, guid: 70691424d231e2d46908bee9019f09fa, type: 3}
+  Tritone: {fileID: 8300000, guid: 36c4d18e09ee41a42b2ed7058bb37550, type: 3}
+  PerfectFifth: {fileID: 8300000, guid: 1e0755bd0bed89f46994409228b53794, type: 3}
+  MinorSixth: {fileID: 8300000, guid: 34cb22cb95dad0f449c90eb9240257b9, type: 3}
+  MajorSixth: {fileID: 8300000, guid: 74936c01a6008b3479376bccc3e403b0, type: 3}
+  MinorSeventh: {fileID: 8300000, guid: 7547bd9d705765d4bb6602824ecfa905, type: 3}
+  MajorSeventh: {fileID: 8300000, guid: d76843ae5870f4e48860e2faaead37c5, type: 3}
+  PerfectOctave: {fileID: 8300000, guid: df91845fa7da5b94c898c90d2eaf69a1, type: 3}
   IntervalsList: []
   IntervalsListString: []
   EnemyIndex: 0
@@ -284,3 +285,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsFirstInLine: 0
+--- !u!114 &4334935041173458539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6849179335092445827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9d5d3ced0a15e24699ecef0ec056b9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

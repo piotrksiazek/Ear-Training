@@ -4,37 +4,52 @@ using UnityEngine;
 
 public class PlayAudio : MonoBehaviour
 {
-    //AudioSource audioSource;
-    //AudioClip audioClip;
-    //RaycastHit2D hit;
-    //private void Start()
-    //{
-    //    audioSource = GetComponent<AudioSource>();
-    //    audioClip = audioSource.clip;
-    //}
+    AudioSource audioSource;
+    AudioClip audioClip;
+    private bool isPlayingAdio = false;
 
-    //void Update()
-    //{
-    //    PlayAudioIfPlayerBelow();
-    //}
+    RaycastHit2D hit;
+    private bool isFirstInLine;
+    private int layerMask;
 
-    //public void PlayAudioIfPlayerBelow()
-    //{
-    //    // Cast a ray straight down.
-    //    hit = Physics2D.Raycast(transform.position, Vector2.down);
+    private void Start()
+    {
+        layerMask = 1 << 8;
+        layerMask = ~layerMask;
+        audioSource = GetComponent<AudioSource>();
+        audioClip = audioSource.clip;
+    }
 
-    //    // If it hits an enemy below
-    //    if (hit.collider != null)
-    //    {
-    //        if(hit.transform.tag == "Player")
-    //        {
-    //            print("Player Below");
-    //            audioSource.PlayOneShot(audioClip);
-    //        }
-    //    }
-    //    else
-    //    {
-    //        audioSource.Stop();
-    //    }
-    //}
+    void Update()
+    {
+        PlayAudioIfPlayerBelow();
+    }
+
+    public void PlayAudioIfPlayerBelow()
+    {
+        hit = Physics2D.Raycast(transform.position, Vector2.down, Mathf.Infinity, layerMask);
+
+        if (hit)
+        {
+            isFirstInLine = GetComponent<ActivateDeactivateEnemy>().IsFirstInLine;
+            
+            if(hit.transform.tag == "Player" && isFirstInLine)
+            {
+                if(!isPlayingAdio)
+                {
+                    audioSource.PlayOneShot(audioClip);
+                    isPlayingAdio = true;
+                }
+                    
+
+                
+            }
+
+            else
+            {
+                isPlayingAdio = false;
+                audioSource.Stop();
+            }
+        }
+    }
 }
