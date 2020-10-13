@@ -77,8 +77,9 @@ public class PlayAudio : MonoBehaviour
             audioSource.volume -= Time.deltaTime / fadeOutDuration;
             
             yield return null;
-            audioSource.Stop();
+            //audioSource.Stop();
         }
+        audioSource.Stop(); // Tutaj wkleiłem
         isPlayingAdio = false;
         audioSource.volume = 0;
     }

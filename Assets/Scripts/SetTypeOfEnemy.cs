@@ -21,6 +21,7 @@ public class SetTypeOfEnemy : MonoBehaviour
     // Lists containing audio clips with intervals and interval names in string format
     public List<AudioClip> IntervalsList;
     public List<string> IntervalsListString;
+    public Dictionary<string, AudioClip> IntervalsDictionary;
 
 
     private AudioSource audioSource;
@@ -35,12 +36,13 @@ public class SetTypeOfEnemy : MonoBehaviour
     {
         IntervalsList = GetIntervals();
         IntervalsListString = GetIntervalsString();
+        IntervalsDictionary = getIntervalsDictionary(IntervalsListString, IntervalsList);
         audioSource = GetComponent<AudioSource>();
         DetermineTypeOfEnemy(audioSource);
         EnemyIndex = CommonData.Instance.CurrentEnemyIndex;
     }
 
-
+    #region IntervalsList, ListString and Dictionary initialization
     // Used to initialise a list and assign it to a variable in Start() method
     private List<AudioClip> GetIntervals()
     {
@@ -80,6 +82,21 @@ public class SetTypeOfEnemy : MonoBehaviour
         return intervalsListString;
     }
 
+    private Dictionary<string, AudioClip> getIntervalsDictionary(List<string> intervalsListString, List<AudioClip> intervalsList)
+    {
+        var intervalsDictionary = new Dictionary<string, AudioClip>();
+
+        for(int i = 0; i < intervalsListString.Count; i++)
+        {
+            intervalsDictionary.Add(intervalsListString[i], intervalsList[i]);
+        }
+
+        return intervalsDictionary;
+    }
+
+    #endregion
+
+    #region Randomize IntervalGuess and played audioclip
     // Generates a random number corresponding with intervalsList length
     private int GetRandomIntervalIndex()
     {
@@ -102,6 +119,7 @@ public class SetTypeOfEnemy : MonoBehaviour
             intervalGuess = intervalListStringCopy[Random.Range(0, intervalListStringCopy.Count - 1)];
         }
     }
+    #endregion
 
     // Primary method of the class. Handles tag, audioclip and intevalGuess assignment
     private void DetermineTypeOfEnemy(AudioSource audioSource)
