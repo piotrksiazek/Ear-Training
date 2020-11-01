@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SetTypeOfEnemy : MonoBehaviour
 {   // Intervals in audio clip
@@ -17,7 +18,7 @@ public class SetTypeOfEnemy : MonoBehaviour
     public AudioClip MinorSeventh;
     public AudioClip MajorSeventh;
     public AudioClip PerfectOctave;
-    
+
     // Lists containing audio clips with intervals and interval names in string format
     public List<AudioClip> IntervalsList;
     public List<string> IntervalsListString;
@@ -29,7 +30,11 @@ public class SetTypeOfEnemy : MonoBehaviour
     public int EnemyIndex;
 
     // Text on enemy with interval name. It can match inteval played by enemy but can be a lie as well
+    [SerializeField]
+    private Text intervalGuessUI = default;
     public string intervalGuess;
+
+    public bool isALiar;
 
 
     void Start()
@@ -39,7 +44,14 @@ public class SetTypeOfEnemy : MonoBehaviour
         IntervalsDictionary = getIntervalsDictionary(IntervalsListString, IntervalsList);
         audioSource = GetComponent<AudioSource>();
         DetermineTypeOfEnemy(audioSource);
+        intervalGuessUI.text = intervalGuess;
+        checkIfIsALiar();
         EnemyIndex = CommonData.Instance.CurrentEnemyIndex;
+    }
+
+    private void Update()
+    {
+        textUIFollowObject();
     }
 
     #region IntervalsList, ListString and Dictionary initialization
@@ -121,6 +133,23 @@ public class SetTypeOfEnemy : MonoBehaviour
     }
     #endregion
 
+    private void checkIfIsALiar()
+    {
+        if(transform.tag == intervalGuess)
+        {
+            isALiar = false;
+        }
+        else
+        {
+            isALiar = true;
+        }
+    }
+
+    private void textUIFollowObject()
+    {
+        Vector2 textPosition = Camera.main.WorldToScreenPoint(transform.position);
+        intervalGuessUI.transform.position = textPosition;
+    }
     // Primary method of the class. Handles tag, audioclip and intevalGuess assignment
     private void DetermineTypeOfEnemy(AudioSource audioSource)
     {
