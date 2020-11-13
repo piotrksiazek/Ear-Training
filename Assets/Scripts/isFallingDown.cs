@@ -16,19 +16,19 @@ public class isFallingDown : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if(CommonData.Instance.isAttackingFromBelow)
-        //{
-        //    isFallingDownText.text = "FROM BELOW";
-        //}
-        //else if(CommonData.Instance.isAttackingFromAbove)
-        //{
-        //    isFallingDownText.text = "FROM ABOVE";
-        //}
-        //else
-        //{
-        //    isFallingDownText.text = "NOT ATTACKING";
-        //}
+        if (CommonData.Instance.isAttackingFromBelow)
+        {
+            isFallingDownText.text = "FROM BELOW";
+        }
+        else if (CommonData.Instance.isAttackingFromAbove)
+        {
+            isFallingDownText.text = "FROM ABOVE";
+        }
+        else
+        {
+            isFallingDownText.text = "NOT ATTACKING";
+        }
 
-        isFallingDownText.text = CommonData.Instance.ReferenceEnemiesDict.Count.ToString();
+        //isFallingDownText.text = CommonData.Instance.ReferenceEnemiesDict.Count.ToString();
     }
 }

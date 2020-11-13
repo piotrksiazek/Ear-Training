@@ -7,6 +7,7 @@ public class DetectFirstInLineEnemy : MonoBehaviour
     RaycastHit2D hit;
     SpriteRenderer spriteRenderer;
     int layerMask;
+
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -26,14 +27,12 @@ public class DetectFirstInLineEnemy : MonoBehaviour
         if (hit)
         {   
             if(hit.transform.tag != "Player")
-            {              
-                hit.transform.GetComponent<SpriteRenderer>().color = Color.red; // Replace with activate / deactivate method
+            {
                 hit.transform.GetComponent<ActivateDeactivateEnemy>().IsFirstInLine = true;
             }
 
             else
             {
-                hit.transform.GetComponent<SpriteRenderer>().color = Color.white;
                 hit.transform.GetComponent<ActivateDeactivateEnemy>().IsFirstInLine = false;
             }
         }
@@ -41,8 +40,4 @@ public class DetectFirstInLineEnemy : MonoBehaviour
         
     }
 
-    public void TestRay()
-    {
-        
-    }
 }

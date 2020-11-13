@@ -5,6 +5,8 @@ using UnityEngine;
 public class CommonData : MonoBehaviour
 {
     public static CommonData Instance { get; private set; }
+    public int Points = 0;
+
     public float MinPos;
     public float MaxPos;
     public GameObject Player;

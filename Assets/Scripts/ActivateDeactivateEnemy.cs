@@ -7,10 +7,17 @@ public class ActivateDeactivateEnemy : MonoBehaviour
     private SetTypeOfEnemy setTypeOfEnemy;
     private int enemyIndex;
     public bool IsFirstInLine = false;
+    private SpriteRenderer spriteRenderer;
+    public Sprite ActivatedEnemySprite;
+    public Sprite DeactivatedEnemySprite;
 
-
+    private void Update()
+    {
+        ChangeSprite();
+    }
     private void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
         setTypeOfEnemy = GetComponent<SetTypeOfEnemy>();
         enemyIndex = setTypeOfEnemy.EnemyIndex;
     }
@@ -32,6 +39,14 @@ public class ActivateDeactivateEnemy : MonoBehaviour
         CommonData.Instance.DictString.RemoveAt(CommonData.Instance.DictString.Count - 1); //Delete
         print($"my index is {enemyIndex}"); //Delete
 
+    }
+
+    private void ChangeSprite()
+    {
+        if (IsFirstInLine) 
+            spriteRenderer.sprite = ActivatedEnemySprite;
+        else 
+            spriteRenderer.sprite = DeactivatedEnemySprite;
     }
 
 }

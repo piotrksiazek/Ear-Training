@@ -75,7 +75,7 @@ public class SetTypeOfEnemy : MonoBehaviour
     }
 
     // Used to initialise a list and assign it to a variable in Start() method
-    private List<string> GetIntervalsString()
+    public List<string> GetIntervalsString()
     {
         var intervalsListString = new List<string>(){"PerfectUnison",
                                                      "MinorSecond",
@@ -120,7 +120,7 @@ public class SetTypeOfEnemy : MonoBehaviour
     private void SetIntervalGuess(int randomIntervalIndex)
     {
         List<string> intervalListStringCopy = new List<string>(IntervalsListString); 
-        int chance = Random.Range(0, 1);
+        float chance = Random.Range(0f, 1f);
         if(chance > 0.5)
         {
             intervalGuess = transform.tag;
