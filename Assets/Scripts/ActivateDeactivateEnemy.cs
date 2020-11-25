@@ -31,6 +31,10 @@ public class ActivateDeactivateEnemy : MonoBehaviour
             }
             
         }
+        if (collision.transform.tag == "PeakCollider")
+        {
+
+        }
     }
 
     private void OnDestroy()
